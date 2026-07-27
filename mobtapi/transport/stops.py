@@ -1,26 +1,27 @@
 from . import _api_client
 
+
 class Stop:
     """A public transport stop."""
 
     def __init__(
         self,
         id,
-        code,
-        name,
-        lat,
-        lon,
-        routes,
-        airport,
-        company_zone_id,
-        location_type,
-        scheduled_arrival,
-        time_zone,
-        virtual_level,
-        wheelchair_boarding,
-        x,
-        y,
-        zone_id,
+        code=None,
+        name=None,
+        lat=None,
+        lon=None,
+        routes=None,
+        airport=None,
+        company_zone_id=None,
+        location_type=None,
+        scheduled_arrival=None,
+        time_zone=None,
+        virtual_level=None,
+        wheelchair_boarding=None,
+        x=None,
+        y=None,
+        zone_id=None,
     ):
         self.id = id
         """Unique identifier of the stop."""
@@ -73,7 +74,17 @@ class Stop:
     def __repr__(self):
         return str(self.name)
 
+
 def _parse_stop(data: dict) -> Stop:
+    """
+    Parse a stop from API response data.
+
+    Args:
+        data (dict): Stop data returned by the API.
+
+    Returns:
+        Stop: Parsed stop object.
+    """
     return Stop(
         id=data.get("id"),
         code=data.get("code"),
@@ -95,10 +106,47 @@ def _parse_stop(data: dict) -> Stop:
 
 
 def _parse_stops(data: list[dict]) -> list[Stop]:
-    stops = []
-    for el in data:
-        stops.append(_parse_stop(el))
-    return stops
+    """
+    Parse a list of stops from API response data.
+
+    Args:
+        data (list[dict]): List of stop dictionaries.
+
+    Returns:
+        list[Stop]: Parsed stops.
+    """
+    return [_parse_stop(stop) for stop in data]
+
 
 def get_stops() -> list[Stop]:
-    return _parse_stops(_api_client.get("routers/galicia/index/stops"))
+    """
+    Get all available stops from the MOBT API.
+
+    Returns:
+        list[Stop]: List of available public transport stops.
+
+    Raises:
+        requests.RequestException: If the API request fails.
+        ValueError: If the API response cannot be decoded as JSON.
+    """
+    return _parse_stops(
+        _api_client.get("routers/galicia/index/stops")
+    )
+
+
+def get_trip_stops(trip_id: str) -> list[Stop]:
+    """
+    Get the stops of a trip.
+
+    Args:
+        trip_id (str): Identifier of the trip.
+
+    Returns:
+        list[Stop]: List of stops belonging to the trip.
+
+    Raises:
+        requests.RequestException: If the API request fails.
+        ValueError: If the API response cannot be decoded as JSON.
+    """
+    endpoint = f"routers/galicia/index/trips/{trip_id}/stops"
+    return _parse_stops(_api_client.get(endpoint))
