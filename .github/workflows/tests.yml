@@ -28,7 +28,7 @@ jobs:
       - name: Run tests
         run: |
           pytest \
-            --cov=arrivagal \
+            --cov=mobtapi \
             --cov-report=term-missing \
             --cov-fail-under=80
 
