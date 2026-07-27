@@ -1,0 +1,1 @@
+MOBT_URL = "https://api.pgm.meep.me/tripplan/api/v1/"
