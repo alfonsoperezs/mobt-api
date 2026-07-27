@@ -1,0 +1,18 @@
+site_name: MOBT API
+site_description: Python wrapper for MOBT API
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_source: true
+
+nav:
+  - Home: index.md
+  - Transport:
+      - Stops: stops.md

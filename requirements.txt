@@ -2,3 +2,6 @@ setuptools
 requests
 pytest
 pytest-cov
+mkdocs 
+mkdocstrings[python]
+mkdocs-material
