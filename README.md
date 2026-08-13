@@ -10,9 +10,7 @@ Soon...
 
 ## 📚 Documentation
 
-The full API documentation is available here:
-
-https://alfonsoperezs.github.io/mobt-api/
+The full API documentation is available [here](https://alfonsoperezs.github.io/mobt-api/):
 
 ## 🤝 Contributing
 
