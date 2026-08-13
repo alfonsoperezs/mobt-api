@@ -16,3 +16,4 @@ nav:
   - Home: index.md
   - Transport:
       - Stops: stops.md
+      - Lines: lines.md
