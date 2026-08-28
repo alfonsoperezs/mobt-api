@@ -2,7 +2,7 @@
 
 `mobt-api` is a Python API wrapper for [MOBT](https://mobt.xunta.gal/).
 
-It provides a simple interface to access public transport information from Arriva Galicia, including buses and bus stops.
+It provides a simple interface to access public transport information from MOBT, including buses and bus stops.
 
 ## 🛠️ Installation
 
